@@ -13,7 +13,7 @@ def get_mask_card_number(number_card: str) -> str:
 def get_mask_account(number_chek:str) -> str:
     """Функцию маскировки номера банковского счета"""
     chek_number_str = number_chek.replace(" ", "")
-    if len(chek_number_str) == 20:
+    if len(chek_number_str) == 20 and chek_number_str.isdigit():
         return "**" + chek_number_str[-4:]
     else:
         return "Вы ввели неправильный номер счета"
