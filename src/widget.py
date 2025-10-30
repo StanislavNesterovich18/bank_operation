@@ -20,4 +20,6 @@ def mask_account_card(card_namber: str) -> str:
 
 def get_data(time_card: str) -> str:
     """принимает дату/время, возвращает дату в формате ДД.ММ.ГГГГ"""
+    if time_card == "":
+        return "Данные не найдены"
     return time_card[8:10] + "." + time_card[5:7] + "." + time_card[:4]
