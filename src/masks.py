@@ -1,6 +1,3 @@
-from typing import Union
-
-
 def get_mask_card_number(number_card: str) -> str:
     """Функцию маскировки номера банковской карты"""
     card_namber_str = number_card.replace(" ", "")
@@ -10,7 +7,7 @@ def get_mask_card_number(number_card: str) -> str:
         return "Вы ввели неправильный номер карты"
 
 
-def get_mask_account(number_chek:str) -> str:
+def get_mask_account(number_chek: str) -> str:
     """Функцию маскировки номера банковского счета"""
     chek_number_str = number_chek.replace(" ", "")
     if len(chek_number_str) == 20 and chek_number_str.isdigit():
