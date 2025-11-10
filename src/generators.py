@@ -1,7 +1,7 @@
-from typing import Iterator, Generator
+from typing import Iterator, Generator, Literal
 
 
-def filter_by_currency(transactions: list, currency: str) -> Iterator:
+def filter_by_currency(transactions: list, currency: Literal["USD", "RUB"]) -> Iterator:
     """
     Функция возвращать итератор,
      который поочередно выдает транзакции,
