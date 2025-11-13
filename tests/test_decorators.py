@@ -1,5 +1,6 @@
 import pytest
 
+from pathlib import Path
 from src.decorators import foo, log
 
 
@@ -13,7 +14,7 @@ def test_log_error_consol(capsys):
 
 
 def test_log_ok_file():
-    file_name = "tests/testlog.txt"
+    file_name = Path(__file__).parent / 'testlog.txt'
 
     log(filename=file_name)
 
@@ -22,4 +23,4 @@ def test_log_ok_file():
 
     with open(file_name, "r", encoding="utf-8") as f:
         write_file = f.readlines()
-        assert write_file[-1] == "foo - OK - 11\n"
+        assert write_file[-1] == "foo - OK - 11"
