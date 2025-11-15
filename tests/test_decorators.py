@@ -5,7 +5,9 @@ from src.decorators import foo, log
 
 
 def test_log_error_consol(capsys):
-    foo
+    @log()
+    def foo(x: int, y: int) -> int:
+        return x + y
 
     with pytest.raises(TypeError):
         foo(5, "x")
@@ -14,13 +16,15 @@ def test_log_error_consol(capsys):
 
 
 def test_log_ok_file():
-    file_name = Path(__file__).parent / 'testlog.txt'
+    file_name = "tests/testlog.txt"
 
-    log(filename=file_name)
+    @log(file_name)
+    def foo(x: int, y: int) -> int:
+        return x + y
 
     result = foo(5, 6)
     assert result == 11
 
     with open(file_name, "r", encoding="utf-8") as f:
         write_file = f.readlines()
-        assert write_file[-1] == "foo - OK - 11"
+        assert write_file[-1] == "foo - OK - 11\n"
