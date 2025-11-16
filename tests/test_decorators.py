@@ -1,7 +1,7 @@
 import pytest
 
-from pathlib import Path
-from src.decorators import foo, log
+from src.decorators import log
+from config import ROOT_DIR
 
 
 def test_log_error_consol(capsys):
@@ -16,7 +16,7 @@ def test_log_error_consol(capsys):
 
 
 def test_log_ok_file():
-    file_name = "tests/testlog.txt"
+    file_name = ROOT_DIR + "\\tests\\" + "testlog.txt"
 
     @log(file_name)
     def foo(x: int, y: int) -> int:
