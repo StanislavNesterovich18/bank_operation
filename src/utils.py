@@ -2,6 +2,7 @@ import json
 import os
 import logging
 from src.external_api import api_currency
+from typing import Any
 
 logger = logging.getLogger(__name__)
 file_handler = logging.FileHandler('logs/utils.log', "w", "utf-8")
@@ -23,6 +24,9 @@ def financial_transaction(file_path: str = "") -> list[dict]:
             data = json.load(f)
             logger.info("Открытие файла json в python")
         return data
+    except FileNotFoundError as e:
+        logger.error(f"ошибка {e}")
+        return []
     except json.JSONDecodeError as e:
         logger.error(f"ошибка {e}")
         return []
@@ -31,7 +35,7 @@ def financial_transaction(file_path: str = "") -> list[dict]:
         return []
 
 
-def amount_transaction(transactions: list[dict]) -> list[dict]:
+def amount_transaction(transactions: dict) -> Any:
     """функция выводит сумму транзакции"""
     logger.info("Запуск функции amount_transaction")
     if transactions.get('operationAmount', {}).get('currency', {}).get('code') == 'RUB':  # type: ignore
