@@ -23,17 +23,21 @@ def financial_transaction(file_path: str = "") -> list[dict]:
             data = json.load(f)
             logger.info("Открытие файла json в python")
         return data
+    except json.JSONDecodeError as e:
+        logger.error(f"ошибка {e}")
+        return []
     except Exception as e:
         logger.error(f"ошибка {e}")
         return []
 
 
 def amount_transaction(transactions: list[dict]) -> list[dict]:
-    """Запуск функции amount_transaction"""
-    logger.info("Запуск функции financial_transaction")
+    """функция выводит сумму транзакции"""
+    logger.info("Запуск функции amount_transaction")
     if transactions.get('operationAmount', {}).get('currency', {}).get('code') == 'RUB':  # type: ignore
         logger.info("Возвращает сумму транзакции")
-        return transactions['operationAmount']['amount']  # type: ignore
+        currency_rub = float(transactions['operationAmount']['amount'])
+        return currency_rub  # type: ignore
     elif transactions.get('operationAmount', {}).get('currency', {}).get('code', None) is None:  # type: ignore
         logger.error("Валюта не найдена")
         return "Валюта не найдена"  # type: ignore
@@ -41,4 +45,5 @@ def amount_transaction(transactions: list[dict]) -> list[dict]:
         convert_currency = api_currency(transactions['operationAmount']['currency']['code'],  # type: ignore
                                         transactions['operationAmount']['amount'])  # type: ignore
         logger.info("Возвращает сумму транзакции конвертируя в рубли")
+
         return convert_currency

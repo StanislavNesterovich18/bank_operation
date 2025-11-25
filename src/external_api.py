@@ -15,5 +15,5 @@ def api_currency(currency_from: list[dict], currency_amount: list[dict]) -> list
 
     response = requests.get(url, headers=headers, data={})
 
-    result = response.json().get("result")
+    result = float(response.json().get("result"))
     return result
