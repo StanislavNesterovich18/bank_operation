@@ -28,6 +28,16 @@
 Функция записывает результат выполнения функции foo в файл.
 11. `log` , `decorator`
 Декоратор для логирования с настройками.
+12. `financial_transaction`
+Функция открывает json файл
+13. `amount_transaction`
+Функция выводит сумму транзакции
+14. `api_currency`
+Функция конвертирует валюту через АПИ
+15. `read_csv`
+Функция чтения из .csv файла
+16. `read_xlsx`
+Функция чтения из excel файла
 
 ## Структура проекта
 ```bash
@@ -35,9 +45,12 @@
 ├── src/
 │   ├── __init__.py     
 │   ├── decorators.py 
+│   ├──external_api.py
 │   ├── generators.py      
 │   ├── masks.py              # Точка входа
 │   ├── processing.py         # Поисковые функции
+│   ├──read_csv_xlsx.py
+│   ├── utils.py
 │   ├── widget.py             # Отчеты и декоратор сохранения     
 ├── tests/                    # Pytest-тесты
 │   ├── __init__.py
@@ -48,12 +61,18 @@
 │   ├── test_masks.py
 │   ├── test_masks_account.py
 │   ├── test_processing.py
+│   ├── test_read_csv_xlsx.py
+│   ├── utils.py
 │   ├── test_widget.py
-├──.coverage
-├──.flake8
+│   ├── testlog.txt
+├── .coverage
+├── .env
+├── .env.example
+├── .flake8
 ├── .gitignore
 ├── config.py
 ├── main.py
+├── mylog.txt
 ├── README.md                 # Описание проекта
 └──requirements.txt
 ```
@@ -68,6 +87,12 @@
 а так же принимает список словарей с транзакциями и возвращает описание каждой операции по очереди и который выдает номера банковских карт в формате `XXXX XXXX XXXX XXXX`, где `X` — цифра номера карты.
 - `conftest.py` - Вспомогательный файл который содержит фикстуры.
 - `test_decorators.py` - Декоратор должен принимать необязательный аргумент filename, который определяет, куда будут записываться логи (в файл или в консоль)
+- `test_mask_account_card` - функция которая тестирует обработку информации о картах.
+- `test_get_mask_card_number` - функция которая тестирует обработку информации о счетах.
+- `test_financial_transaction` - Функция тестирует открытие json файл
+- `test_amount_transaction` - функция тестирует вывод суммы транзакции в рублях
+- `test_read_csv` - функция тестирует чтение csv файла
+- `test_read_xls` - функция тестирует чтение xlsx файла
 
 ## Используемые технологии
 
