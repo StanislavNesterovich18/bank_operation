@@ -2,7 +2,7 @@ from src.generators import filter_by_currency, transaction_descriptions, card_nu
 
 
 def test_filter_by_currency_usd(test_generators):
-    gen_usd = filter_by_currency(test_generators, "")
+    gen_usd = filter_by_currency(test_generators, "USD")
     assert next(gen_usd) == {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572',
                              'operationAmount': {'amount': '9824.07', 'currency': {'name': 'USD', 'code': 'USD'}},
                              'description': 'Перевод организации', 'from': 'Счет 75106830613657916952',

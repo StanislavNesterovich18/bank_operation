@@ -1,0 +1,30 @@
+import pytest
+
+from src.decorators import log
+from config import ROOT_DIR
+
+
+def test_log_error_consol(capsys):
+    @log()
+    def foo(x: int, y: int) -> int:
+        return x + y
+
+    with pytest.raises(TypeError):
+        foo(5, "x")
+    captured = capsys.readouterr()
+    assert "foo - <class 'TypeError'> - args: (5, 'x'), kwargs: {}\n\n" == captured.out
+
+
+def test_log_ok_file():
+    file_name = ROOT_DIR + "\\tests\\" + "testlog.txt"
+
+    @log(file_name)
+    def foo(x: int, y: int) -> int:
+        return x + y
+
+    result = foo(5, 6)
+    assert result == 11
+
+    with open(file_name, "r", encoding="utf-8") as f:
+        write_file = f.readlines()
+        assert write_file[-1] == "foo - OK - 11\n"
