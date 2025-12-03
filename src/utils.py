@@ -1,6 +1,8 @@
 import json
 import os
+import re
 import logging
+from collections import Counter
 from src.external_api import api_currency
 from typing import Any
 
@@ -51,3 +53,26 @@ def amount_transaction(transactions: dict) -> Any:
         logger.info("Возвращает сумму транзакции конвертируя в рубли")
 
         return convert_currency
+
+
+def process_bank_search(data: list[dict], search: str) -> list[dict]:
+    """функция фильтрует список операций по заданным словам"""
+    list_search = []
+    pattern = re.compile(search, re.IGNORECASE)
+    for d in data:
+        if pattern.search(str(d.get("description", ""))):
+            list_search.append(d)
+    return list_search
+
+
+def process_bank_operations(data: list[dict], categories: list) -> dict:
+    """
+функция, которая принимает список словарей с данными о банковских операциях и список категорий операций,
+а возвращает словарь,в котором ключи — это названия категорий,
+а значения — это количество операций в каждой категории
+"""
+    count_categories = []
+    for operation in data:
+        if operation.get("description", "") in categories:
+            count_categories.append(operation.get("description", ""))
+    return dict(Counter(count_categories))
