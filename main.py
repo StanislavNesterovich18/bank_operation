@@ -1,12 +1,12 @@
 # from src.processing import filter_by_state, sort_by_date
 # from src.masks import get_mask_card_number, get_mask_account
 # from src.widget import get_data, mask_account_card
-# from typing import Literal
-
-# from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
-# from src.utils import financial_transaction
-# from src.utils import amount_transaction
-# from src.process_search import process_bank_search, process_bank_operations
+# # from typing import Literal
+#
+# # from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+# # from src.utils import financial_transaction
+# # from src.utils import amount_transaction
+# # from src.process_search import process_bank_search, process_bank_operations
 #
 # if __name__ == '__main__':
 #     x = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
@@ -32,7 +32,7 @@
 # if __name__ == '__main__':
 #     print(get_data(" "))
 # #
-# transactions = (
+# # transactions = (
 #     [
 #         {
 #             "id": 939719570,

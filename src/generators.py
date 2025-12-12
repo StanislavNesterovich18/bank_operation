@@ -4,7 +4,7 @@ from typing import Iterator, Generator, Literal, Any
 def filter_by_currency(transactions_list: list[dict], currency: Literal["USD", "RUB"]) -> Iterator[dict[Any, Any]]:
     """Функция возвращает итератор, который поочередно выдает транзакции с соответствующей валютой."""
     for i in transactions_list:
-        if i["currency_code"] == currency:
+        if i["code"] == currency:
             yield i
 
 
