@@ -1,4 +1,4 @@
-from typing import Union, Any
+from typing import Any, Union
 
 
 def filter_by_state(list_dictionaries: Union[list[dict]], state: Union[str] = 'EXECUTED') -> tuple[list[Any], str] | \
@@ -14,7 +14,7 @@ def filter_by_state(list_dictionaries: Union[list[dict]], state: Union[str] = 'E
     return new_list
 
 
-def sort_by_date(list_dictionaries: list[dict], reverse: bool = True) -> list[dict]:
+def sort_by_date(list_dictionaries: Any, reverse: bool = True) -> Any:
     """Функция возвращает новый список, отсортированный по дате."""
-    sorted_data = sorted(list_dictionaries, key=lambda x: x['data'], reverse=reverse)
+    sorted_data = sorted(list_dictionaries, key=lambda x: x.get('date'), reverse=reverse)
     return sorted_data

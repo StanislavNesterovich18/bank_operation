@@ -1,5 +1,7 @@
 from unittest.mock import mock_open, patch
-from src.utils import financial_transaction, amount_transaction, process_bank_search, process_bank_operations
+
+from src.utils import (amount_transaction, financial_transaction,
+                       process_bank_operations, process_bank_search)
 
 
 def test_financial_transaction():

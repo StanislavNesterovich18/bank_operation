@@ -1,12 +1,13 @@
 # from src.processing import filter_by_state, sort_by_date
 # from src.masks import get_mask_card_number, get_mask_account
 # from src.widget import get_data, mask_account_card
-# # from typing import Literal
-#
-# # from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
-# # from src.utils import financial_transaction
-# # from src.utils import amount_transaction
-# # from src.process_search import process_bank_search, process_bank_operations
+
+# from typing import Literal
+
+# from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+# from src.utils import financial_transaction
+# from src.utils import amount_transaction
+# from src.process_search import process_bank_search, process_bank_operations
 #
 # if __name__ == '__main__':
 #     x = [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
@@ -252,14 +253,14 @@
 import os
 import sys
 
+from src.generators import filter_by_currency  # type: ignore
+from src.processing import filter_by_state, sort_by_date  # type: ignore
+from src.read_csv_xlsx import read_csv, read_xlsx  # type: ignore
+from src.utils import amount_transaction, financial_transaction, process_bank_search  # type: ignore
+from src.widget import get_data, mask_account_card  # type: ignore
+
 # Добавляем путь к папке src
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
-
-from generators import filter_by_currency  # type: ignore
-from processing import filter_by_state, sort_by_date  # type: ignore
-from read_csv_xlsx import read_csv, read_xlsx  # type: ignore
-from utils import financial_transaction, amount_transaction, process_bank_search  # type: ignore
-from widget import get_data, mask_account_card  # type: ignore
 
 
 def main():
@@ -292,12 +293,15 @@ def main():
 Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING
 - """).upper()
         if user_input in ["EXECUTED", "CANCELED", "PENDING"]:
+
             transactions_list = filter_by_state(transactions_list, state=user_input)
             print(f"Операции отфильтрованы по статусу {user_input}")
             break
         else:
             print(f"Статус операции {user_input} недоступен")
-
+    if transactions_list == ([], 'Данные не найдены'):
+        print("Транзакции отсутствуют")
+        exit()
     user_input = input("Отсортировать операции по дате? Да/Нет - ").lower()
 
     if user_input == "да":

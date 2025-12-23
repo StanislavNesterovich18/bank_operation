@@ -1,10 +1,11 @@
 import json
+import logging
 import os
 import re
-import logging
 from collections import Counter
-from src.external_api import api_currency
 from typing import Any
+
+from src.external_api import api_currency
 
 logger = logging.getLogger(__name__)
 file_handler = logging.FileHandler('logs/utils.log', "w", "utf-8")
