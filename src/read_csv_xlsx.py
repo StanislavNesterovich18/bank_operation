@@ -1,8 +1,9 @@
 import csv
+
 import pandas as pd
 
 
-def read_csv(path: str) -> list[dict]:
+def read_csv(path: str) -> list[str]:
     """функция чтения из .csv файла"""
     reader_list = []
     with open(path, encoding="utf-8") as file:

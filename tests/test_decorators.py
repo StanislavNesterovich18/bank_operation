@@ -1,7 +1,7 @@
 import pytest
 
-from src.decorators import log
 from config import ROOT_DIR
+from src.decorators import log
 
 
 def test_log_error_consol(capsys):

@@ -23,8 +23,9 @@ def get_mask_card_number(number_card: str) -> str:
 def get_mask_account(number_chek: str) -> str:
     """Функцию маскировки номера банковского счета"""
     logger.info("запуск функции get_mask_account")
-    chek_number_str = number_chek.replace(" ", "")
-    if len(chek_number_str) == 20 and chek_number_str.isdigit():
+    number_chek.isdigit()
+    chek_number_str = number_chek.rsplit(" ", 1)[-1]
+    if len(chek_number_str) == 20:
         logger.info("замаскированный номер счета")
         return "**" + chek_number_str[-4:]
     else:

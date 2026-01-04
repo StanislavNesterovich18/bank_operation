@@ -3,7 +3,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(card_namber: str) -> str:
     """ функция которая умеет обрабатывать информацию как о картах, так и о счетах."""
-    card_namber_str = card_namber.replace(" ", "")
+    card_namber_str = str(card_namber).replace(" ", "")
     if "счет" in card_namber_str.lower():
         if len(card_namber_str) >= 20 and card_namber_str[-20:].isdigit():
             return f"Счет {get_mask_account(card_namber_str[-20:])}"
